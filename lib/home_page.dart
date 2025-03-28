@@ -101,12 +101,20 @@ class HomePage extends HookWidget {
           ),
           GestureDetector(
             onTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('해당 기능은 아직 지원하지 않습니다.'),
+              if (departureStation.value == '선택' ||
+                  arrivalStation.value == '선택') {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('출발역과 도착역을 선택해주세요.'),
                   duration: Duration(seconds: 2),
-                ),
-              );
+                  ),
+                );
+              } else {
+                context.push('/seat-page', extra: {
+                  'departure': departureStation.value,
+                  'arrival': arrivalStation.value,
+                });
+              }
             },
             child: Container(
               width: double.infinity,

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_train_app/home_page.dart';
+import 'package:flutter_train_app/seat_page.dart';
 import 'package:flutter_train_app/station_list_page.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,6 +29,15 @@ class CustomRouter {
                   selectedStation: (state.extra as Map)['selectedStation'],
                 ),
               ),
+        ),
+        GoRoute(
+          path: '/seat-page',
+          pageBuilder: (context, state) => CupertinoPage(
+            child: SeatPage(
+              departure: (state.extra as Map)['departure'],
+              arrival: (state.extra as Map)['arrival'],
+            ),
+          ),
         ),
       ],
     );
